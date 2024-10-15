@@ -596,10 +596,10 @@ function-bind@^1.1.2:
   resolved "https://registry.npmjs.org/function-bind/-/function-bind-1.1.2.tgz"
   integrity sha512-7XHNxH7qX9xG5mIwxkhumTox/MIRNcOgDrxWsMt2pAr23WHp6MrRlN7FBSFpCpr+oVO0F744iUgR82nJMfG2SA==
 
-galaxy-charts@^0.0.7:
-  version "0.0.7"
-  resolved "https://registry.npmjs.org/galaxy-charts/-/galaxy-charts-0.0.7.tgz"
-  integrity sha512-tCPfyISiVmdfIwQpGXDM0IgMfEsVxQ9jqQDLDoHWlf2UVEv4tJy1a1rxY674OCCoZIiEVTAWzmYvOwAaZyKI5Q==
+galaxy-charts@^0.0.8:
+  version "0.0.8"
+  resolved "https://registry.npmjs.org/galaxy-charts/-/galaxy-charts-0.0.8.tgz"
+  integrity sha512-xAy4mzqvHbeD8TbtEZUU7orkajkj76QNt+OrRX+l6espCLS0K16n+Xfg0tBHEGeKNjc2AGLBuqq/C34fzEhJdA==
   dependencies:
     "@heroicons/vue" "^2.1.5"
     axios "^1.7.2"
