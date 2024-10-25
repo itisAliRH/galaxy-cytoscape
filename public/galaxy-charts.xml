@@ -2,6 +2,10 @@
 <!DOCTYPE visualization SYSTEM "../../visualization.dtd">
 <visualization name="Test Environment">
     <description>Welcome to Galaxy Charts.</description>
+    <requirements>
+        <requirement type="npm" version="NPM_PACKAGE_VERSION" package="NPM_PACKAGE_NAME"/>
+    </requirements>
+    <entry_point entry_point_type="script" src="dist/index.js" css="dist/index.css" />
     <specs>
         <type>spec_type</type>
     </specs>
