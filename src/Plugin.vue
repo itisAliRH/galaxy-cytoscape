@@ -29,6 +29,6 @@ watch(
 
 <template>
     <div ref="viewport" class="h-screen p-4">
-        <div class="text-lg py-4">Place your template here!</div>
+        <div class="text-lg">Place your template here!</div>
     </div>
 </template>
