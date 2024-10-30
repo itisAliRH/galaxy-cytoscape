@@ -12,7 +12,7 @@ const config = {
 </script>
 
 <template>
-    <GalaxyCharts :config="config" xml="plugin.xml">
+    <GalaxyCharts :config="config" xml="MY_VISUALIZATION.xml">
         <template #default="{ datasetId, datasetUrl, root, settings, specs, tracks }">
             <Plugin
                 :dataset-id="datasetId"
