@@ -472,10 +472,10 @@ function-bind@^1.1.2:
   resolved "https://registry.npmjs.org/function-bind/-/function-bind-1.1.2.tgz"
   integrity sha512-7XHNxH7qX9xG5mIwxkhumTox/MIRNcOgDrxWsMt2pAr23WHp6MrRlN7FBSFpCpr+oVO0F744iUgR82nJMfG2SA==
 
-galaxy-charts@^0.0.13:
-  version "0.0.13"
-  resolved "https://registry.npmjs.org/galaxy-charts/-/galaxy-charts-0.0.13.tgz"
-  integrity sha512-ZS0oF/j2vA4ThA/3tT8wX4KkNFudNCYgh0AAU8tEf1+Y1AbROd0wDEWV1N92CNDvLfr+NMNUP18qfO+GKP5PEA==
+galaxy-charts@^0.0.14:
+  version "0.0.14"
+  resolved "https://registry.npmjs.org/galaxy-charts/-/galaxy-charts-0.0.14.tgz"
+  integrity sha512-I3oNJgllUHyNev6ltFTmaPNH9r/uU0CPOo7C38MWQSPPz84Xh/yotMrGm2yNYJR6uppVDOrOW5YNA84RA1sAIQ==
 
 glob-parent@^5.1.2:
   version "5.1.2"

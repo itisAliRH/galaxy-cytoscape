@@ -1,6 +1,12 @@
 <script setup>
-import { GalaxyCharts } from "galaxy-charts";
+import { GalaxyCharts, useConfigStore } from "galaxy-charts";
 import Plugin from "@/Plugin.vue";
+
+if (process.env.credentials) {
+    const configStore = useConfigStore();
+    configStore.setCredentials(process.env.credentials);
+}
+
 const config = {
     dataset_id: null,
     dataset_url: "MY_DATASET_URL",

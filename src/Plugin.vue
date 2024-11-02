@@ -12,7 +12,7 @@ const props = defineProps({
 
 const viewport = ref(null);
 
-function render() {
+async function render() {
     /** Place your render function here! */
 }
 
@@ -28,7 +28,7 @@ watch(
 </script>
 
 <template>
-    <div class="flex items-center justify-center min-h-screen bg-gray-900 text-white">
+    <div class="flex items-center justify-center min-h-screen bg-gray-900 text-white" ref="viewport">
         <div class="text-center p-6 max-w-lg bg-gray-800 rounded-lg shadow-lg">
             <h1 class="text-2xl font-bold mb-4">Welcome to Galaxy Charts Starter Kit!</h1>
             <p class="text-lg mb-6">Initialization Complete!</p>
