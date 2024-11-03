@@ -38,6 +38,9 @@ watch(
             <p class="mb-6">
                 Configure your XML in <code class="bg-gray-700 p-1 rounded">public/MY_VISUALIZATION.xml</code>.
             </p>
+            <p class="mb-6">
+                Provide local runtime settings in <code class="bg-gray-700 p-1 rounded">src/main.js</code>.
+            </p>
             <a
                 href="https://galaxyproject.github.io/galaxy-charts/"
                 target="_blank"
