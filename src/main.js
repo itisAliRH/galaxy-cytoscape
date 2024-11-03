@@ -4,7 +4,7 @@ import App from "./App.vue";
 
 const config = {
     credentials: process.env.credentials,
-    dataset_id: null,
+    dataset_id: "MY_DATASET_ID",
     dataset_url: "MY_DATASET_URL",
     settings: {},
 };
