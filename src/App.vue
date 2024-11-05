@@ -1,6 +1,12 @@
 <script setup lang="ts">
 import { GalaxyCharts, type PluginIncomingType } from "galaxy-charts";
+
 import Plugin from "./Plugin.vue";
+
+interface Props {
+    xml: string;
+    config?: object;
+}
 
 defineProps<{
     credentials?: RequestCredentials;
