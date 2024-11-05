@@ -30,7 +30,7 @@ watch(
 <template>
     <div class="flex items-center justify-center min-h-screen bg-gray-900 text-white" ref="viewport">
         <div class="text-center p-6 max-w-lg bg-gray-800 rounded-lg shadow-lg">
-            <h1 class="text-2xl font-bold mb-4">Welcome to Galaxy Charts Starter Kit!</h1>
+            <h1 class="text-2xl font-bold mb-4">Welcome to the Galaxy Charts Starter!</h1>
             <p class="text-lg mb-6">Initialization Complete!</p>
             <p class="mb-6">
                 Begin creating your visualization in <code class="bg-gray-700 p-1 rounded">src/Plugin.vue</code>.
