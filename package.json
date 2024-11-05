@@ -1,7 +1,8 @@
 {
-    "name": "galaxy-charts-starter",
-    "version": "0.0.0",
+    "name": "@itisalirh/cytoscape",
+    "version": "3.30.3",
     "type": "module",
+    "author": "Alireza Heidari",
     "license": "MIT",
     "files": [
         "static/dist/index.js",
@@ -31,5 +32,18 @@
         "vite": "^5.3.4",
         "vitest": "^2.1.4",
         "vue": "^3.4.31"
-    }
+    },
+    "dependencies": {
+        "axios": "^1.7.7",
+        "cytoscape": "^3.30.3"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/itisalirh/cytoscape.git"
+    },
+    "keywords": [
+        "cytoscape",
+        "vue",
+        "vite"
+    ]
 }
