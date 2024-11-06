@@ -3,11 +3,12 @@ function getNode(id) {
     if (!nodes[id]) {
         nodes[id] = { id: id };
     }
+
     return nodes[id];
 }
 
 // Parse each line of the SIF file
-function parse(line, i) {
+function parse(line) {
     const source = getNode(line[0]);
     const interaction = line[1] ? line[1] : "";
 
@@ -21,7 +22,7 @@ function parse(line, i) {
                     // Create an object for each target for the source
                     const target = getNode(line[j]);
 
-                    const relation_object = {
+                    const relationObject = {
                         target: target.id,
                         source: source.id,
                         id: source.id + target.id,
@@ -30,9 +31,9 @@ function parse(line, i) {
                     };
 
                     if (source < target) {
-                        links[source.id + target.id + interaction] = relation_object;
+                        links[source.id + target.id + interaction] = relationObject;
                     } else {
-                        links[target.id + source.id + interaction] = relation_object;
+                        links[target.id + source.id + interaction] = relationObject;
                     }
                 }
             }
@@ -73,7 +74,7 @@ function toDataArr(nodes, links) {
     return content;
 }
 
-export function parse_sif(text) {
+export function parseSIF(text) {
     // Private variables and methods
     const nodes = {};
     const links = {};
@@ -93,7 +94,7 @@ export function parse_sif(text) {
     return parsed;
 }
 
-export function runSearchAlgorithm(cytoscape, root_id, type, self) {
+export function runSearchAlgorithm(cytoscape, rootId, type, self) {
     let algorithm = "";
     let i = 0;
 
@@ -111,21 +112,21 @@ export function runSearchAlgorithm(cytoscape, root_id, type, self) {
     switch (type) {
         // Breadth First Search
         case "bfs":
-            algorithm = cytoscape.elements().bfs("#" + root_id, function () {}, true);
+            algorithm = cytoscape.elements().bfs("#" + rootId, function () {}, true);
             selectNextElement();
             break;
         // Depth First Search
         case "dfs":
-            algorithm = cytoscape.elements().dfs("#" + root_id, function () {}, true);
+            algorithm = cytoscape.elements().dfs("#" + rootId, function () {}, true);
             selectNextElement();
             break;
         // A* search
         case "astar":
             // Choose root and destination for performing A*
             if (!self.astar_root) {
-                self.astar_root = root_id;
+                self.astar_root = rootId;
             } else {
-                self.astar_destination = root_id;
+                self.astar_destination = rootId;
             }
             if (self.astar_root && self.astar_destination) {
                 algorithm = cytoscape
@@ -138,41 +139,41 @@ export function runSearchAlgorithm(cytoscape, root_id, type, self) {
     }
 }
 
-export function runTraversalType(cytoscape, root_id, type) {
-    let node_collection;
+export function runTraversalType(cytoscape, rootId, type) {
+    let nodeCollection;
 
     switch (type) {
         // Recursively get edges (and their sources) coming into the nodes in a collection
         case "predecessors":
-            node_collection = cytoscape.$("#" + root_id).predecessors();
+            nodeCollection = cytoscape.$("#" + rootId).predecessors();
             break;
         // Recursively get edges (and their targets) coming out of the nodes in a collection
         case "successors":
-            node_collection = cytoscape.$("#" + root_id).successors();
+            nodeCollection = cytoscape.$("#" + rootId).successors();
             break;
         // Get edges (and their targets) coming out of the nodes in a collection.
         case "outgoers":
-            node_collection = cytoscape.$("#" + root_id).outgoers();
+            nodeCollection = cytoscape.$("#" + rootId).outgoers();
             break;
         // Get edges (and their sources) coming into the nodes in a collection.
         case "incomers":
-            node_collection = cytoscape.$("#" + root_id).incomers();
+            nodeCollection = cytoscape.$("#" + rootId).incomers();
             break;
         // From the set of calling nodes, get the nodes which are roots
         case "roots":
-            node_collection = cytoscape.$("#" + root_id).roots();
+            nodeCollection = cytoscape.$("#" + rootId).roots();
             break;
         // From the set of calling nodes, get the nodes which are leaves
         case "leaves":
-            node_collection = cytoscape.$("#" + root_id).leaves();
+            nodeCollection = cytoscape.$("#" + rootId).leaves();
             break;
         default:
             return;
     }
 
     // Add CSS class for selected nodes and edges
-    node_collection.edges().addClass("searchpath");
-    node_collection.nodes().addClass("searchpath");
+    nodeCollection.edges().addClass("searchpath");
+    nodeCollection.nodes().addClass("searchpath");
 }
 
 export function styleGenerator(settings) {

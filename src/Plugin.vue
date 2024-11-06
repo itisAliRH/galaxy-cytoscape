@@ -3,7 +3,7 @@ import axios from "axios";
 import Cytoscape from "cytoscape";
 import { onMounted, onUnmounted, ref, watch } from "vue";
 
-import { parse_sif, runSearchAlgorithm, runTraversalType, styleGenerator } from "./utils";
+import { parseSIF, runSearchAlgorithm, runTraversalType, styleGenerator } from "./utils";
 
 interface Props {
     datasetId: string;
@@ -67,7 +67,7 @@ async function getDataset() {
     const { data } = await axios.get(props.datasetUrl);
 
     if (dataset.file_ext === "sif") {
-        dataset.value = parse_sif(data).content;
+        dataset.value = parseSIF(data).content;
     } else {
         dataset.value = data.elements ? data.elements : data;
     }
