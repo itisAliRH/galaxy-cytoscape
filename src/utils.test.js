@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, vi } from "vitest";
-import { parseSIF, runSearchAlgorithm, runTraversalType } from "./utils";
+import { parseSIF, runSearchAlgorithm, runTraversalType, styleGenerator } from "./utils";
 
 beforeEach(() => {
     vi.useFakeTimers();
@@ -94,4 +94,68 @@ test("runTraversalType", () => {
         expect(edge.id).toBeDefined();
         expect(edge.relation).toBeDefined();
     });
+});
+
+test("styleGenerator", () => {
+    const style = styleGenerator({
+        color_picker_nodes: "#666",
+        curve_style: "haystack",
+        color_picker_edges: "#ccc",
+        directed: "triangle",
+        color_picker_highlighted: "red",
+    });
+
+    const expected = [
+        {
+            selector: "node",
+            style: {
+                "background-color": "#666",
+                opacity: 1,
+                content: "data(id)",
+                "text-valign": "center",
+            },
+        },
+        {
+            selector: "core",
+            style: {
+                "selection-box-color": "#AAD8FF",
+                "selection-box-border-color": "#8BB0D0",
+                "selection-box-opacity": "0.5",
+            },
+        },
+        {
+            selector: "edge",
+            style: {
+                "curve-style": "haystack",
+                "haystack-radius": 0,
+                width: 3,
+                opacity: 1,
+                "line-color": "#ccc",
+                "target-arrow-shape": "triangle",
+                "overlay-padding": "3px",
+            },
+        },
+        {
+            selector: "node:selected",
+            style: {
+                "border-width": "6px",
+                "border-color": "#AAD8FF",
+                "border-opacity": "0.5",
+                "background-color": "#77828C",
+                "text-outline-color": "#77828C",
+            },
+        },
+        {
+            selector: ".searchpath",
+            style: {
+                "background-color": "red",
+                "line-color": "red",
+                "target-arrow-color": "red",
+                "transition-property": "background-color, line-color, target-arrow-color",
+                "transition-duration": "0.5s",
+            },
+        },
+    ];
+
+    expect(style).toEqual(expected);
 });
