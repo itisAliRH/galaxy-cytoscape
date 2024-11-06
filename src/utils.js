@@ -1,18 +1,17 @@
 // Add a node
-function getNode(id) {
+function getNode(id, nodes) {
     if (!nodes[id]) {
         nodes[id] = { id: id };
     }
-
     return nodes[id];
 }
 
 // Parse each line of the SIF file
-function parse(line) {
-    const source = getNode(line[0]);
-    const interaction = line[1] ? line[1] : "";
-
+function parse(line, nodes, links) {
     line = line.split("\t").length > 1 ? line.split("\t") : line.split(" ");
+
+    const source = getNode(line[0], nodes);
+    const interaction = line[1] ? line[1] : "";
 
     if (line.length && line.length > 0 && line[0] !== "") {
         if (interaction !== "") {
@@ -20,7 +19,7 @@ function parse(line) {
             for (let j = 2; j < line.length; j++) {
                 if (line[j] !== "") {
                     // Create an object for each target for the source
-                    const target = getNode(line[j]);
+                    const target = getNode(line[j], nodes);
 
                     const relationObject = {
                         target: target.id,
@@ -30,17 +29,15 @@ function parse(line) {
                         relation: interaction.replace(/[''""]+/g, ""),
                     };
 
-                    if (source < target) {
+                    if (source.id < target.id) {
                         links[source.id + target.id + interaction] = relationObject;
                     } else {
                         links[target.id + source.id + interaction] = relationObject;
                     }
                 }
             }
-        }
-        // Handle the case of single node i.e. no relation with any other node
-        // and only the source exists
-        else {
+        } else {
+            // Handle the case of single node i.e. no relation with any other node
             links[source.id] = { target: "", source: source.id, id: source.id, relation: "" };
         }
     }
@@ -62,36 +59,30 @@ function toDataArr(nodes, links) {
     const content = [];
 
     // Make a list of all nodes
-    for (let i = 0; i < nodes.length; i++) {
-        content.push({ data: nodes[i] });
+    for (const key in nodes) {
+        content.push({ data: nodes[key] });
     }
 
     // Make a list of all relationships among nodes
-    for (let i = 0; i < links.length; i++) {
-        content.push({ data: links[i] });
+    for (const key in links) {
+        content.push({ data: links[key] });
     }
 
     return content;
 }
 
 export function parseSIF(text) {
-    // Private variables and methods
     const nodes = {};
     const links = {};
-
     const lines = text.split("\n");
 
     for (let i = 0; i < lines.length; i++) {
         if (lines[i] !== "") {
-            parse(lines[i], i);
+            parse(lines[i], nodes, links);
         }
     }
 
-    const parsed = {
-        content: toDataArr(toArr(nodes), toArr(links)),
-    };
-
-    return parsed;
+    return { content: toDataArr(nodes, links) };
 }
 
 export function runSearchAlgorithm(cytoscape, rootId, type, self) {
