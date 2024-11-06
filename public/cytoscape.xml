@@ -119,10 +119,6 @@
                     <value>dfs</value>
                 </data>
                 <data>
-                    <label>Depth First Search</label>
-                    <value>dfs</value>
-                </data>
-                <data>
                     <label>Minimum Spanning Tree (Kruskal)</label>
                     <value>kruskal</value>
                 </data>
