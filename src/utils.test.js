@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, vi } from "vitest";
-import { parseSIF, runSearchAlgorithm } from "./utils";
+import { parseSIF, runSearchAlgorithm, runTraversalType } from "./utils";
 
 beforeEach(() => {
     vi.useFakeTimers();
@@ -51,5 +51,47 @@ test("runSearchAlgorithm", () => {
     const path = cytoscape.elements().bfs().path;
     path.forEach((element) => {
         expect(element.addClass).toHaveBeenCalledWith("searchpath");
+    });
+});
+
+test("runTraversalType", () => {
+    const cytoscape = {
+        elements: () => {
+            return {
+                nodes: () => {
+                    return [{ id: "A" }, { id: "B" }, { id: "C" }, { id: "D" }];
+                },
+                edges: () => {
+                    return [
+                        { source: "A", target: "B", id: "AB", relation: "ppi" },
+                        { source: "B", target: "C", id: "BC", relation: "ppi" },
+                        { source: "C", target: "D", id: "CD", relation: "ppi" },
+                    ];
+                },
+            };
+        },
+        layout: () => {
+            return {
+                start: () => {},
+            };
+        },
+    };
+    const rootId = "A";
+    const type = "bfs";
+
+    runTraversalType(cytoscape, rootId, type);
+
+    const nodes = cytoscape.elements().nodes();
+    const edges = cytoscape.elements().edges();
+
+    nodes.forEach((node) => {
+        expect(node.id).toBeDefined();
+    });
+
+    edges.forEach((edge) => {
+        expect(edge.source).toBeDefined();
+        expect(edge.target).toBeDefined();
+        expect(edge.id).toBeDefined();
+        expect(edge.relation).toBeDefined();
     });
 });
