@@ -1,5 +1,5 @@
 import { defineConfig } from "vite";
-import { configDefaults } from 'vitest/config';
+import { configDefaults } from "vitest/config";
 import tailwindcss from "tailwindcss";
 import vue from "@vitejs/plugin-vue";
 import path from "path";
@@ -61,7 +61,7 @@ export default defineConfig({
     },
     test: {
         globals: true,
-        environment: 'jsdom',
-        exclude: [...configDefaults.exclude, 'e2e/*'],
+        environment: "jsdom",
+        exclude: [...configDefaults.exclude, "e2e/*"],
     },
 });
