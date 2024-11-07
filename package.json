@@ -3,20 +3,21 @@
     "version": "0.0.0",
     "type": "module",
     "license": "MIT",
-    "scripts": {
-        "dev": "vite",
-        "build": "vite build",
-        "preview": "vite preview",
-        "prettier": "prettier --write 'package.json' '*.js' 'src/**/*.js' 'src/**/*.vue'",
-        "test": "vitest",
-        "test:watch": "vitest --watch",
-        "test:ui": "vitest --ui"
-    },
     "files": [
         "static/dist/index.js",
         "static/dist/index.css"
     ],
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview",
+        "prettier": "prettier --write 'package.json' '*.js' '*.ts' 'src/**/*.js' 'src/**/*.vue'",
+        "test": "vitest",
+        "test:watch": "vitest --watch",
+        "test:ui": "vitest --ui"
+    },
     "devDependencies": {
+        "@types/node": "^22.9.0",
         "@vitejs/plugin-vue": "^5.0.5",
         "@vitest/ui": "^2.1.4",
         "autoprefixer": "^10.4.19",
