@@ -1,25 +1,36 @@
 <script setup lang="ts">
 import axios from "axios";
-import Cytoscape from "cytoscape";
+import Cytoscape, { type Core, type ElementDefinition, type ElementsDefinition } from "cytoscape";
 import { onMounted, onUnmounted, ref, watch } from "vue";
 
 import { parseSIF, runSearchAlgorithm, runTraversalType, styleGenerator } from "./utils";
 
+type Settings = {
+    directed: boolean;
+    layout_name: "breadthfirst" | "circle" | "concentric" | "cose" | "grid" | "null" | "preset" | "random";
+    curve_style: "haystack" | "straight" | "bezier" | "unbundled-bezier" | "segments" | "taxi";
+    color_picker_nodes: string;
+    color_picker_edges: string;
+    color_picker_highlighted: string;
+    graph_traversal?: string;
+    search_algorithm?: string;
+};
+
 interface Props {
+    root: string;
+    tracks: unknown[];
     datasetId: string;
     datasetUrl: string;
-    root: string;
-    settings: object;
+    settings: Settings;
     specs?: object;
-    tracks: unknown[];
 }
 
 const props = defineProps<Props>();
 
 const viewport = ref(null);
 
-const dataset = ref(null);
-const cytoscape = ref(null);
+const cytoscape = ref<Core | null>(null);
+const dataset = ref<ElementsDefinition | ElementDefinition[]>();
 
 async function render() {
     await getDataset();
@@ -29,7 +40,7 @@ async function render() {
         elements: dataset.value,
         layout: {
             name: props.settings.layout_name,
-            idealEdgeLength: 100,
+            idealEdgeLength: () => 100,
             nodeOverlap: 20,
         },
         minZoom: 0.1,
@@ -47,35 +58,27 @@ async function render() {
         const search_algorithm = props.settings.search_algorithm;
         const traversal_type = props.settings.graph_traversal;
 
-        if (search_algorithm) {
+        if (cytoscape.value && search_algorithm) {
             runSearchAlgorithm(cytoscape.value, ele.id(), search_algorithm);
-        } else if (traversal_type) {
+        } else if (cytoscape.value && traversal_type) {
             runTraversalType(cytoscape.value, ele.id(), traversal_type);
         }
     });
 
     window.addEventListener("resize", function () {
-        cytoscape.value
-            .layout({
-                name: props.settings.layout_name,
-            })
-            .run();
+        cytoscape.value?.layout({ name: props.settings.layout_name }).run();
     });
 }
 
 async function getDataset() {
     const { data } = await axios.get(props.datasetUrl);
 
-    if (dataset.file_ext === "sif") {
+    if (data.file_ext === "sif") {
         dataset.value = parseSIF(data).content;
     } else {
         dataset.value = data.elements ? data.elements : data;
     }
 }
-
-onMounted(() => {
-    render();
-});
 
 watch(
     () => props,
@@ -83,12 +86,16 @@ watch(
     { deep: true },
 );
 
+onMounted(() => {
+    render();
+});
+
 onUnmounted(() => {
     window.removeEventListener("resize", function () {
         console.log("Removing resize event listener");
     });
 
-    cytoscape.value.destroy();
+    cytoscape.value?.destroy();
 });
 </script>
 
