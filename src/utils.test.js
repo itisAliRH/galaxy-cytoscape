@@ -120,7 +120,7 @@ test("styleGenerator", () => {
             style: {
                 "selection-box-color": "#AAD8FF",
                 "selection-box-border-color": "#8BB0D0",
-                "selection-box-opacity": "0.5",
+                "selection-box-opacity": 0.5,
             },
         },
         {
@@ -140,7 +140,7 @@ test("styleGenerator", () => {
             style: {
                 "border-width": "6px",
                 "border-color": "#AAD8FF",
-                "border-opacity": "0.5",
+                "border-opacity": 0.5,
                 "background-color": "#77828C",
                 "text-outline-color": "#77828C",
             },

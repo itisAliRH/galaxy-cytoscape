@@ -1,25 +1,34 @@
+import {
+    type CollectionReturnValue,
+    type NodeCollection,
+    type Core,
+    type Stylesheet,
+    type ElementDefinition,
+} from "cytoscape";
+
 // Add a node
-function getNode(id, nodes) {
+function getNode(id: string, nodes: NodeCollection | {}) {
     if (!nodes[id]) {
         nodes[id] = { id: id };
     }
+
     return nodes[id];
 }
 
 // Parse each line of the SIF file
-function parse(line, nodes, links) {
-    line = line.split("\t").length > 1 ? line.split("\t") : line.split(" ");
+function parse(line: string, nodes: NodeCollection | {}, links: NodeCollection | {}) {
+    const lines = line.split("\t").length > 1 ? line.split("\t") : line.split(" ");
 
-    const source = getNode(line[0], nodes);
-    const interaction = line[1] ? line[1] : "";
+    const source = getNode(lines[0], nodes);
+    const interaction = lines[1] ? lines[1] : "";
 
-    if (line.length && line.length > 0 && line[0] !== "") {
+    if (lines.length && lines.length > 0 && lines[0] !== "") {
         if (interaction !== "") {
             // Get all the target nodes for a source
-            for (let j = 2; j < line.length; j++) {
-                if (line[j] !== "") {
+            for (let j = 2; j < lines.length; j++) {
+                if (lines[j] !== "") {
                     // Create an object for each target for the source
-                    const target = getNode(line[j], nodes);
+                    const target = getNode(lines[j], nodes);
 
                     const relationObject = {
                         target: target.id,
@@ -43,20 +52,9 @@ function parse(line, nodes, links) {
     }
 }
 
-// Convert to array from objects
-function toArr(obj) {
-    const arr = [];
-
-    for (const key in obj) {
-        arr.push(obj[key]);
-    }
-
-    return arr;
-}
-
 // Make content from list of nodes and links
-function toDataArr(nodes, links) {
-    const content = [];
+function toDataArr(nodes: NodeCollection | {}, links: NodeCollection | {}) {
+    const content: ElementDefinition[] = [];
 
     // Make a list of all nodes
     for (const key in nodes) {
@@ -71,9 +69,9 @@ function toDataArr(nodes, links) {
     return content;
 }
 
-export function parseSIF(text) {
-    const nodes = {};
-    const links = {};
+export function parseSIF(text: string) {
+    const nodes: NodeCollection | {} = {};
+    const links: NodeCollection | {} = {};
     const lines = text.split("\n");
 
     for (let i = 0; i < lines.length; i++) {
@@ -85,8 +83,8 @@ export function parseSIF(text) {
     return { content: toDataArr(nodes, links) };
 }
 
-export function runSearchAlgorithm(cytoscape, rootId, type, self) {
-    let algorithm = "";
+export function runSearchAlgorithm(cytoscape: Core, rootId: string, type: string, self?: any) {
+    let algorithm: any;
     let i = 0;
 
     function selectNextElement() {
@@ -103,12 +101,12 @@ export function runSearchAlgorithm(cytoscape, rootId, type, self) {
     switch (type) {
         // Breadth First Search
         case "bfs":
-            algorithm = cytoscape.elements().bfs("#" + rootId, function () {}, true);
+            algorithm = cytoscape.elements().bfs({ root: "#" + rootId, directed: true });
             selectNextElement();
             break;
         // Depth First Search
         case "dfs":
-            algorithm = cytoscape.elements().dfs("#" + rootId, function () {}, true);
+            algorithm = cytoscape.elements().dfs({ root: "#" + rootId, directed: true });
             selectNextElement();
             break;
         // A* search
@@ -122,7 +120,7 @@ export function runSearchAlgorithm(cytoscape, rootId, type, self) {
             if (self.astar_root && self.astar_destination) {
                 algorithm = cytoscape
                     .elements()
-                    .aStar({ root: "#" + self.astar_root, goal: "#" + self.astar_destination }, function () {}, true);
+                    .aStar({ root: "#" + self.astar_root, goal: "#" + self.astar_destination, directed: true });
                 selectNextElement();
             }
         default:
@@ -130,8 +128,8 @@ export function runSearchAlgorithm(cytoscape, rootId, type, self) {
     }
 }
 
-export function runTraversalType(cytoscape, rootId, type) {
-    let nodeCollection;
+export function runTraversalType(cytoscape: Core, rootId: string, type: string) {
+    let nodeCollection: CollectionReturnValue | NodeCollection;
 
     switch (type) {
         // Recursively get edges (and their sources) coming into the nodes in a collection
@@ -167,7 +165,7 @@ export function runTraversalType(cytoscape, rootId, type) {
     nodeCollection.nodes().addClass("searchpath");
 }
 
-export function styleGenerator(settings) {
+export function styleGenerator(settings: any): Stylesheet[] {
     return [
         {
             selector: "node",
@@ -183,7 +181,7 @@ export function styleGenerator(settings) {
             style: {
                 "selection-box-color": "#AAD8FF",
                 "selection-box-border-color": "#8BB0D0",
-                "selection-box-opacity": "0.5",
+                "selection-box-opacity": 0.5,
             },
         },
         {
@@ -203,7 +201,7 @@ export function styleGenerator(settings) {
             style: {
                 "border-width": "6px",
                 "border-color": "#AAD8FF",
-                "border-opacity": "0.5",
+                "border-opacity": 0.5,
                 "background-color": "#77828C",
                 "text-outline-color": "#77828C",
             },
