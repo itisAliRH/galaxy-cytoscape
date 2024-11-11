@@ -12,8 +12,8 @@ type Settings = {
     color_picker_nodes: string;
     color_picker_edges: string;
     color_picker_highlighted: string;
-    graph_traversal?: string;
-    search_algorithm?: string;
+    graph_traversal?: "successors" | "predecessors" | "outgoers" | "incomers" | "roots" | "leaves";
+    search_algorithm?: "bfs" | "dfs" | "kruskal" | "astar";
 };
 
 interface Props {
