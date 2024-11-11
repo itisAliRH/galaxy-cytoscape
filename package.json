@@ -1,6 +1,6 @@
 {
-    "name": "@itisalirh/cytoscape",
-    "version": "3.30.3-1",
+    "name": "@itisalirh/galaxy-cytoscape",
+    "version": "3.30.3",
     "type": "module",
     "author": "Alireza Heidari",
     "license": "MIT",
@@ -41,7 +41,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/itisalirh/cytoscape.git"
+        "url": "git+https://github.com/itisalirh/galaxy-cytoscape.git"
     },
     "keywords": [
         "cytoscape",
