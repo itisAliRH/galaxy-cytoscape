@@ -33,8 +33,6 @@ const cytoscape = ref<Core | null>(null);
 const dataset = ref<ElementsDefinition | ElementDefinition[]>();
 
 async function render() {
-    await getDataset();
-
     cytoscape.value = Cytoscape({
         container: viewport.value,
         elements: dataset.value,
@@ -64,10 +62,6 @@ async function render() {
             runTraversalType(cytoscape.value, ele.id(), traversal_type);
         }
     });
-
-    window.addEventListener("resize", function () {
-        cytoscape.value?.layout({ name: props.settings.layout_name }).run();
-    });
 }
 
 async function getDataset() {
@@ -86,8 +80,14 @@ watch(
     { deep: true },
 );
 
-onMounted(() => {
-    render();
+onMounted(async () => {
+    await getDataset();
+
+    await render();
+
+    window.addEventListener("resize", function () {
+        cytoscape.value?.layout({ name: props.settings.layout_name }).run();
+    });
 });
 
 onUnmounted(() => {
