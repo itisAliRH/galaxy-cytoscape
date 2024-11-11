@@ -192,8 +192,8 @@ export function styleGenerator(settings: any): Stylesheet[] {
                 width: 3,
                 opacity: 1,
                 "line-color": settings.color_picker_edges,
-                "target-arrow-shape": settings.directed,
                 "overlay-padding": "3px",
+                ...(settings.directed ? { "target-arrow-shape": "triangle" } : {}),
             },
         },
         {

@@ -90,18 +90,7 @@
             <label>Directed/Undirected</label>
             <name>directed</name>
             <help>Select a kind of edge.</help>
-            <type>select</type>
-            <display>radio</display>
-            <data>
-                <data>
-                    <label>Directed</label>
-                    <value>triangle</value>
-                </data>
-                <data>
-                    <label>Undirected</label>
-                    <value></value>
-                </data>
-            </data>
+            <type>boolean</type>
         </input>
         <input>
             <label>Graph algorithms</label>
