@@ -1,7 +1,6 @@
 <p align="center">
   <img src="https://cdn.jsdelivr.net/gh/galaxyproject/galaxy-charts/docs/public/galaxy-charts.svg" width="100" height="100">
   <img src="public/logo.png" width="100" height="100">
-
 </p>
 
 <p align="center">
@@ -10,7 +9,7 @@
   </span>
 </p>
 
-# Galaxy Visualization Tool: Cytospace
+# Galaxy Visualization Tool: Cytoscape
 
 This project is a Galaxy visualization package that integrates [Cytoscape](https://cytoscape.org/) into the Galaxy platform using the [Galaxy Charts](https://galaxyproject.github.io/galaxy-charts/) and [Cytoscape package](https://www.npmjs.com/package/cytoscape).
 
