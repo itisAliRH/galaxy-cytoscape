@@ -42,7 +42,7 @@ async function render() {
             nodeOverlap: 20,
         },
         minZoom: 0.1,
-        maxZoom: 20,
+        maxZoom: 50,
         style: styleGenerator(props.settings),
     });
 
