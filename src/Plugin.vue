@@ -86,7 +86,7 @@ onMounted(async () => {
     await render();
 
     window.addEventListener("resize", function () {
-        cytoscape.value?.layout({ name: props.settings.layout_name }).run();
+        cytoscape.value?.resize();
     });
 });
 
