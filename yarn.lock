@@ -33,10 +33,10 @@
     "@babel/helper-validator-identifier" "^7.24.7"
     to-fast-properties "^2.0.0"
 
-"@esbuild/darwin-arm64@0.21.5":
+"@esbuild/darwin-x64@0.21.5":
   version "0.21.5"
-  resolved "https://registry.npmjs.org/@esbuild/darwin-arm64/-/darwin-arm64-0.21.5.tgz"
-  integrity sha512-DwqXqZyuk5AiWWf3UfLiRDJ5EDd49zg6O9wclZ7kUMv2WRFr4HKjXp/5t8JZ11QbQfUS6/cRCKGwYhtNAY88kQ==
+  resolved "https://registry.npmjs.org/@esbuild/darwin-x64/-/darwin-x64-0.21.5.tgz"
+  integrity sha512-se/JjF8NlmKVG4kNIuyWMV/22ZaerB+qaSi5MdrXtd6R08kvs2qCN4C09miupktDitvh8jRFflwGFBQcxZRjbw==
 
 "@isaacs/cliui@^8.0.2":
   version "8.0.2"
@@ -118,10 +118,10 @@
   resolved "https://registry.npmjs.org/@polka/url/-/url-1.0.0-next.28.tgz"
   integrity sha512-8LduaNlMZGwdZ6qWrKlfa+2M4gahzFkprZiAt2TF8uS0qQgBizKXpXURqvTJ4WtmupWxaLqjRb2UCTe72mu+Aw==
 
-"@rollup/rollup-darwin-arm64@4.24.0":
+"@rollup/rollup-darwin-x64@4.24.0":
   version "4.24.0"
-  resolved "https://registry.npmjs.org/@rollup/rollup-darwin-arm64/-/rollup-darwin-arm64-4.24.0.tgz"
-  integrity sha512-bIv+X9xeSs1XCk6DVvkO+S/z8/2AMt/2lMqdQbMrmVpgFvXlmde9mLcbQpztXm1tajC3raFDqegsH18HQPMYtA==
+  resolved "https://registry.npmjs.org/@rollup/rollup-darwin-x64/-/rollup-darwin-x64-4.24.0.tgz"
+  integrity sha512-X6/nOwoFN7RT2svEQWUsW/5C/fYMBe4fnLK9DQk4SX4mgVBiTA9h64kjUYPvGQ0F/9xwJ5U5UfTbl6BEjaQdBQ==
 
 "@types/cytoscape@^3.21.8":
   version "3.21.8"
@@ -746,10 +746,10 @@ galaxy-charts-xml-parser@^1.0.3:
   dependencies:
     axios "^1.7.7"
 
-galaxy-charts@^0.0.26:
-  version "0.0.26"
-  resolved "https://registry.npmjs.org/galaxy-charts/-/galaxy-charts-0.0.26.tgz"
-  integrity sha512-tygf0djiYJVuPR5kxz8wFeJHuxRvXWjxoYvrnZXyAav82H/lLEGpZ7NNoSC1PLVkRHU78DarzVr65ca+nn+P6A==
+galaxy-charts@^0.0.27:
+  version "0.0.27"
+  resolved "https://registry.npmjs.org/galaxy-charts/-/galaxy-charts-0.0.27.tgz"
+  integrity sha512-iRxct4DApj8mDpaQa3vcPw31XEvRKgH1h9KhzoIBnTJJb7WrSoUOL5kOSSdqPn7oIvnq+QJrkYM8MXFNCi8kug==
 
 glob-parent@^5.1.2:
   version "5.1.2"

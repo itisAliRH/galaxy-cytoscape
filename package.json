@@ -1,6 +1,6 @@
 {
-    "name": "@itisalirh/galaxy-cytoscape",
-    "version": "3.30.3-3",
+    "name": "@galaxyproject/cytoscape",
+    "version": "0.0.1",
     "type": "module",
     "author": "Alireza Heidari",
     "license": "MIT",
